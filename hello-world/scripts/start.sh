@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
+
+set -e
 
 . ${CLOUDIFY_LOGGING}
 
@@ -9,7 +11,7 @@ PID_FILE="server.pid"
 info "Starting HTTP server from ${PYTHON_FILE_SERVER_ROOT}"
 
 echo "Changing directory to ${PYTHON_FILE_SERVER_ROOT}"
-cd ${PYTHON_FILE_SERVER_ROOT} || exit $?
+cd ${PYTHON_FILE_SERVER_ROOT}
 info "Starting SimpleHTTPServer"
 nohup python -m SimpleHTTPServer ${port} > /dev/null 2>&1 &
 echo $! > ${PID_FILE}
